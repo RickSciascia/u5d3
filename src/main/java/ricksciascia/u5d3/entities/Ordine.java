@@ -2,6 +2,7 @@ package ricksciascia.u5d3.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -26,7 +27,11 @@ public class Ordine {
     }
 
     public double getTotale(int nCoperti, double prezzoCoperto) {
-        return getElementiMenu().stream().mapToDouble(elemento -> elemento.getPrezzo()).sum() + (nCoperti * prezzoCoperto);
+        double totaleOrdine = getElementiMenu().stream().mapToDouble(Menu::getPrezzo).sum();
+        System.out.println(totaleOrdine);
+        double totaleCoperto = (nCoperti * prezzoCoperto);
+        System.out.println(totaleCoperto);
+        return totaleOrdine+totaleCoperto;
     }
 //    toString
 
